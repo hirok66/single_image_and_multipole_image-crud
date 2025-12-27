@@ -15,8 +15,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::post('/image', [ProfileController::class, 'image'])->name('image.store');
-    Route::post('/image/delete', [ProfileController::class, 'deleteImage'])->name('image.delete');
-    Route::post('/image/edit', [ProfileController::class, 'editImage'])->name('image.edit');
+    // Route::post('/image/delete', [ProfileController::class, 'deleteImage'])->name('image.delete');
+    // Route::post('/image/edit', [ProfileController::class, 'editImage'])->name('image.edit');
 
 });
 

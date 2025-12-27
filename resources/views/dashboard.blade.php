@@ -57,37 +57,56 @@
                     <h1>Image show</h1>
                     <p>This is your application dashboard. Here you can manage your settings and view your data.</p>
                 </div>
+ <hr> <hr>
+                <div class="p-4 text-gray-900 grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
 
-                <div class="p-4 text-gray-900">
 
+<h2 class="text-xl font-semibold mb-4">Profile Image</h2>
 
+@if ($user->image)
+    <img src="{{ asset($user->image) }}" alt="Profile Image" width="150">
+@else
+    <p>No profile image uploaded</p>
+@endif
 
-                    <h2>Profile Image</h2>
-                    @if ($user->image)
-                        <img src="{{ asset($user->image) }}" alt="Profile Image" width="150">
-                    @else
-                        <p>No profile image uploaded</p>
-                    @endif
+<hr class="my-6">
 
-                    <hr>
-
-                   <h2 class="text-xl font-semibold mb-4">All Photos</h2>
+<h2 class="text-xl font-semibold mb-4">All Photos</h2>
 
 @if (!empty($images))
-    <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-        @foreach ($images as $image)
-            @if ($user->image !== $image)
+    <table class="table-auto border-collapse border border-gray-300 w-full">
+    <tbody>
+        <tr>
+            @php $count = 0; @endphp
 
-                <div class="border p-2">
-                    <img src="{{ asset($image) }}" alt="Photo" width="150">
-                </div>
+            @foreach ($images as $key => $image)
+                @if ($user->image !== $image)
 
-            @endif
-        @endforeach
-    </div>
+                    <td class="border border-gray-300 p-2 text-center">
+                        <img src="{{ asset($image) }}"
+                             class="w-32 h-24 object-cover mx-auto mb-2">
+
+
+                    </td>
+
+                    @php $count++; @endphp
+                    @if ($count % 5 == 0)
+                        </tr><tr>
+                    @endif
+
+                @endif
+            @endforeach
+        </tr>
+    </tbody>
+</table>
+
 @else
     <p>No photos uploaded</p>
 @endif
+
+
+
+
 
 
 
